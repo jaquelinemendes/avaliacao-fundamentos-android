@@ -24,6 +24,7 @@ public class UserRepository {
 
     public boolean verifyPass(String user, String pass) {
         boolean userValid;
+
         DatabaseHelper helper = new DatabaseHelper(AppUtil.CONTEXT);
         SQLiteDatabase db = helper.getReadableDatabase();
         String where = UserContract.USER + " = ? AND " + UserContract.PASSWORD + " = ?";
