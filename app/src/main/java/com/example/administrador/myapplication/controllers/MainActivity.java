@@ -26,6 +26,9 @@ public class MainActivity extends AppCompatActivity {
         final EditText txtPass = AppUtil.get(findViewById(R.id.editTextPass));
         final Button btnLogin = (Button) findViewById(R.id.buttonLogin);
 
+        txtLogin.setText("Jaqueline Mendes");
+        txtPass.setText("cast123");
+
         // Change typeface for the password field
         txtPass.setTypeface(Typeface.DEFAULT);
         txtPass.setTransformationMethod(new PasswordTransformationMethod());

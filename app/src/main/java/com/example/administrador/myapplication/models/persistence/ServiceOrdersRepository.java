@@ -25,6 +25,7 @@ public final class ServiceOrdersRepository {
     public void save(ServiceOrder serviceOrder) {
         DatabaseHelper helper = new DatabaseHelper(AppUtil.CONTEXT);
         SQLiteDatabase db = helper.getWritableDatabase();
+        serviceOrder.setActive(true);
         if (serviceOrder.getId() == null) {
             db.insert(ServiceOrderContract.TABLE, null, ServiceOrderContract.getContentValues(serviceOrder));
         } else {
@@ -50,10 +51,10 @@ public final class ServiceOrdersRepository {
         DatabaseHelper helper = new DatabaseHelper(AppUtil.CONTEXT);
         SQLiteDatabase db = helper.getReadableDatabase();
 
-        String where = ServiceOrderContract.ACTIVE + " = ?";
-        String[] args = {"1"};
+//        String where = ServiceOrderContract.ACTIVE + " = ?";
+     //   String[] args = {"1"};
 
-        Cursor cursor = db.query(ServiceOrderContract.TABLE, ServiceOrderContract.COLUNS, where, args, null, null, ServiceOrderContract.DATE);
+        Cursor cursor = db.query(ServiceOrderContract.TABLE, ServiceOrderContract.COLUNS, null, null, null, null, ServiceOrderContract.DATE);
         List<ServiceOrder> serviceOrders = ServiceOrderContract.bindList(cursor);
         db.close();
         helper.close();
@@ -65,22 +66,23 @@ public final class ServiceOrdersRepository {
         SQLiteDatabase db = helper.getReadableDatabase();
 
         String where = ServiceOrderContract.ACTIVE + " = ?";
-        String integerStatus = status ? "0" : "1";
+        String integerStatus = status ? "1" : "0";
         String[] args = {integerStatus};
 
         Cursor cursor = db.query(ServiceOrderContract.TABLE, ServiceOrderContract.COLUNS, where, args, null, null, ServiceOrderContract.DATE);
         List<ServiceOrder> serviceOrders = ServiceOrderContract.bindList(cursor);
+
         db.close();
         helper.close();
         return serviceOrders;
     }
 
 
-    public void inactivate(ServiceOrder serviceOrder) {
+    public void inactivate(ServiceOrder serviceOrder, boolean status) {
         DatabaseHelper helper = new DatabaseHelper(AppUtil.CONTEXT);
         SQLiteDatabase db = helper.getWritableDatabase();
 
-        serviceOrder.setActive(false);
+        serviceOrder.setActive(status);
 
         String where = ServiceOrderContract.ID + " = ?";
         String[] args = {serviceOrder.getId().toString()};

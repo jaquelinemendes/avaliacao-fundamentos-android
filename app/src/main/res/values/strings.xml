@@ -14,6 +14,8 @@
     <string name="msg_delete">Delete the selected service order?</string>
     <string name="msg_delete_success">Service order deleted successfully.</string>
     <string name="msg_error_login"> User and Password Incorrect!</string>
+    <string name="msg_active_success">Order successfully activated service</string>
+    <string name="msg_active"> Activate the selected service order?</string>
 
 
     <string name="lbl_user">User</string>
@@ -42,5 +44,9 @@
     <string name="lbl_active">Delete</string>
     <string name="lbl_active_menu">Active</string>
     <string name="lbl_inative_menu">Inactive</string>
+    <string name="lbl_active_item">Active</string>
+    <string name="lbl_confirm_active">Activate</string>
+    <string name="lbl_search_all">All</string>
+
 
 </resources>

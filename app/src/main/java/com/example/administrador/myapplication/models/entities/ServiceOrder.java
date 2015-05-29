@@ -138,15 +138,17 @@ public class ServiceOrder implements Parcelable {
     }
 
     public static List<ServiceOrder> getAll() {
-        return ServiceOrdersRepository.getInstance().getAll();
+        boolean statusInicial = true;
+        return ServiceOrdersRepository.getInstance().getAll(statusInicial);
     }
 
     public void save() {
         ServiceOrdersRepository.getInstance().save(this);
     }
 
-    public void delete() {
-        ServiceOrdersRepository.getInstance().inactivate(this);
+    public void activeInactive(boolean status) {
+
+        ServiceOrdersRepository.getInstance().inactivate(this, status);
         //ServiceOrdersRepository.getInstance().delete(this);
     }
 

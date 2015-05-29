@@ -42,4 +42,8 @@
     <string name="lbl_active">Remover</string>
     <string name="lbl_active_menu">Ativo</string>
     <string name="lbl_inative_menu">Inativo</string>
+    <string name="lbl_active_item">Ativar</string>
+    <string name="lbl_confirm_active">Ativar a ordem de serviço selecionada?</string>
+    <string name="msg_active_success">Ordem de servico ativada com sucesso.</string>
+    <string name="lbl_search_all">Todos</string>
 </resources>

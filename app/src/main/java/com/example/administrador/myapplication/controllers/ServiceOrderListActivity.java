@@ -104,7 +104,7 @@ public class ServiceOrderListActivity extends AppCompatActivity implements Popup
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 // Delete and show a message
-                                serviceOrder.delete();
+                                serviceOrder.activeInactive(false);
                                 Toast.makeText(ServiceOrderListActivity.this, R.string.msg_delete_success, Toast.LENGTH_LONG).show();
                                 // Update recycler view dataset
                                 updateRecyclerItens();
@@ -115,6 +115,26 @@ public class ServiceOrderListActivity extends AppCompatActivity implements Popup
                         .setNeutralButton(R.string.lbl_no, null)
                         .create().show();
                 return true;
+            case R.id.actionActiveItem:
+                new AlertDialog.Builder(this)
+                        .setTitle(R.string.lbl_confirm_active)
+                        .setMessage(R.string.msg_active)
+                        .setPositiveButton(R.string.lbl_yes, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // Delete and show a message
+                                serviceOrder.activeInactive(true);
+                                Toast.makeText(ServiceOrderListActivity.this, R.string.msg_active_success, Toast.LENGTH_LONG).show();
+                                // Update recycler view dataset
+                                updateRecyclerItens();
+                                // Force onPrepareOptionsMenu call
+                                supportInvalidateOptionsMenu();
+                            }
+                        })
+                        .setNeutralButton(R.string.lbl_no, null)
+                        .create().show();
+                return true;
+
             case R.id.actionCall:
                 // Best Practices: http://stackoverflow.com/questions/4275678/how-to-make-phone-call-using-intent-in-android
                 final Intent goToSOPhoneCall = new Intent(Intent.ACTION_CALL /* or Intent.ACTION_DIAL (no manifest permission needed) */);
@@ -158,8 +178,14 @@ public class ServiceOrderListActivity extends AppCompatActivity implements Popup
                 mServiceOrdersAdapter.notifyDataSetChanged();
                 return true;
 
+
             case R.id.search_inative:
                 mServiceOrdersAdapter.setItens(ServiceOrdersRepository.getInstance().getAll(false));
+                mServiceOrdersAdapter.notifyDataSetChanged();
+                return true;
+
+            case R.id.search_all:
+                mServiceOrdersAdapter.setItens(ServiceOrdersRepository.getInstance().getAll());
                 mServiceOrdersAdapter.notifyDataSetChanged();
                 return true;
         }

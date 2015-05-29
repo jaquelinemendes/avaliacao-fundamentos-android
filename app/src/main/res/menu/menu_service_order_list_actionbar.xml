@@ -25,6 +25,14 @@
                 android:id="@+id/search_inative"
                 android:icon="@mipmap/ic_action_action_visibility_off"
                 android:title="@string/lbl_inative_menu" />
+
+            <item
+                android:id="@+id/search_all"
+                android:icon="@mipmap/ic_action_action_all"
+                android:title="@string/lbl_search_all" />
+
+
+
         </menu>
 
     </item>
