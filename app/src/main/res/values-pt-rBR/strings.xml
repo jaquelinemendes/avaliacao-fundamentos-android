@@ -15,6 +15,7 @@
     <string name="msg_delete">Remover a ordem de serviço selecionada?</string>
     <string name="msg_delete_success">Ordem de servico removida com sucesso.</string>
     <string name="msg_error_login"> Usuário e Senha Incorretos!</string>
+    <string name="msg_active"> Ativar ordem de Serviço? </string>
 
     <string name="lbl_user">Usuário</string>
     <string name="lbl_pass">Senha</string>
@@ -43,7 +44,7 @@
     <string name="lbl_active_menu">Ativo</string>
     <string name="lbl_inative_menu">Inativo</string>
     <string name="lbl_active_item">Ativar</string>
-    <string name="lbl_confirm_active">Ativar a ordem de serviço selecionada?</string>
+    <string name="lbl_confirm_active">Ativar</string>
     <string name="msg_active_success">Ordem de servico ativada com sucesso.</string>
     <string name="lbl_search_all">Todos</string>
 </resources>
