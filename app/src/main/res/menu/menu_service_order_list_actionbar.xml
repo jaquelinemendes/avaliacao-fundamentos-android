@@ -1,11 +1,32 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools" tools:context=".controllers.ServiceOrderActivity">
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".controllers.ServiceOrderActivity">
 
     <item
         android:id="@+id/actionShare"
-        android:title="@string/lbl_share"
         android:icon="@mipmap/ic_action_share"
+        android:title="@string/lbl_share"
         app:showAsAction="always" />
+
+    <item
+        android:id="@+id/search"
+        android:icon="@mipmap/ic_action_action_search"
+        android:title="@string/lbl_share"
+        app:showAsAction="always">
+
+        <menu>
+            <item
+                android:id="@+id/search_active"
+                android:icon="@mipmap/ic_action_action_visibility"
+                android:title="@string/lbl_active_menu" />
+
+            <item
+                android:id="@+id/search_inative"
+                android:icon="@mipmap/ic_action_action_visibility_off"
+                android:title="@string/lbl_inative_menu" />
+        </menu>
+
+    </item>
 
 </menu>

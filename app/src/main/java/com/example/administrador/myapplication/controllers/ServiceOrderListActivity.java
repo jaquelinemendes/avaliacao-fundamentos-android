@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.example.administrador.myapplication.R;
 import com.example.administrador.myapplication.models.entities.ServiceOrder;
+import com.example.administrador.myapplication.models.persistence.ServiceOrdersRepository;
 import com.example.administrador.myapplication.util.AppUtil;
 import com.melnykov.fab.FloatingActionButton;
 
@@ -151,7 +152,18 @@ public class ServiceOrderListActivity extends AppCompatActivity implements Popup
                     startActivity(chooser);
                 }
                 return true;
+
+            case R.id.search_active:
+                mServiceOrdersAdapter.setItens(ServiceOrdersRepository.getInstance().getAll(true));
+                mServiceOrdersAdapter.notifyDataSetChanged();
+                return true;
+
+            case R.id.search_inative:
+                mServiceOrdersAdapter.setItens(ServiceOrdersRepository.getInstance().getAll(false));
+                mServiceOrdersAdapter.notifyDataSetChanged();
+                return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
 

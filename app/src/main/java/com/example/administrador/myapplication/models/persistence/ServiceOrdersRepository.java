@@ -6,11 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import com.example.administrador.myapplication.models.entities.ServiceOrder;
 import com.example.administrador.myapplication.util.AppUtil;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 public final class ServiceOrdersRepository {
 
@@ -53,11 +49,44 @@ public final class ServiceOrdersRepository {
     public List<ServiceOrder> getAll() {
         DatabaseHelper helper = new DatabaseHelper(AppUtil.CONTEXT);
         SQLiteDatabase db = helper.getReadableDatabase();
-        Cursor cursor = db.query(ServiceOrderContract.TABLE, ServiceOrderContract.COLUNS, null, null, null, null, ServiceOrderContract.DATE);
+
+        String where = ServiceOrderContract.ACTIVE + " = ?";
+        String[] args = {"1"};
+
+        Cursor cursor = db.query(ServiceOrderContract.TABLE, ServiceOrderContract.COLUNS, where, args, null, null, ServiceOrderContract.DATE);
         List<ServiceOrder> serviceOrders = ServiceOrderContract.bindList(cursor);
         db.close();
         helper.close();
         return serviceOrders;
     }
+
+    public List<ServiceOrder> getAll(boolean status) {
+        DatabaseHelper helper = new DatabaseHelper(AppUtil.CONTEXT);
+        SQLiteDatabase db = helper.getReadableDatabase();
+
+        String where = ServiceOrderContract.ACTIVE + " = ?";
+        String integerStatus = status ? "0" : "1";
+        String[] args = {integerStatus};
+
+        Cursor cursor = db.query(ServiceOrderContract.TABLE, ServiceOrderContract.COLUNS, where, args, null, null, ServiceOrderContract.DATE);
+        List<ServiceOrder> serviceOrders = ServiceOrderContract.bindList(cursor);
+        db.close();
+        helper.close();
+        return serviceOrders;
+    }
+
+
+    public void inactivate(ServiceOrder serviceOrder) {
+        DatabaseHelper helper = new DatabaseHelper(AppUtil.CONTEXT);
+        SQLiteDatabase db = helper.getWritableDatabase();
+
+        serviceOrder.setActive(false);
+
+        String where = ServiceOrderContract.ID + " = ?";
+        String[] args = {serviceOrder.getId().toString()};
+        db.update(ServiceOrderContract.TABLE, ServiceOrderContract.getContentValues(serviceOrder), where, args);
+
+    }
+
 
 }

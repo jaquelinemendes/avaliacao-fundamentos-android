@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.administrador.myapplication.R;
 import com.example.administrador.myapplication.models.persistence.UserRepository;
@@ -32,8 +33,11 @@ public class MainActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(UserRepository.getInstance().verifyPass(txtLogin.toString(), txtPass.toString()))
-                startActivity(new Intent(MainActivity.this, ServiceOrderListActivity.class));
+                if(UserRepository.getInstance().verifyPass(txtLogin.getText().toString(), txtPass.getText().toString())) {
+                    startActivity(new Intent(MainActivity.this, ServiceOrderListActivity.class));
+                }else{
+                        Toast.makeText(MainActivity.this, R.string.msg_error_login, Toast.LENGTH_LONG).show();
+                }
             }
         });
     }

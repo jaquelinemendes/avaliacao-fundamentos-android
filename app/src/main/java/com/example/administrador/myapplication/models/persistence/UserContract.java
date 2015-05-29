@@ -11,7 +11,7 @@ public class UserContract {
     public static final String PASSWORD = "password";
 
 
-    public static final String[] COLUNS = {ID, TABLE, USER, PASSWORD};
+    public static final String[] COLUNS = {ID, USER, PASSWORD};
 
     public static String createTable() {
         final StringBuilder sql = new StringBuilder();
@@ -20,7 +20,7 @@ public class UserContract {
         sql.append(" ( ");
         sql.append(ID + " INTEGER PRIMARY KEY, ");
         sql.append(USER + " TEXT, ");
-        sql.append(PASSWORD + " TEXT, ");
+        sql.append(PASSWORD + " TEXT");
         sql.append(" ); ");
         return sql.toString();
     }
@@ -36,8 +36,8 @@ public class UserContract {
         sql.append(") ");
         sql.append("VALUES ");
         sql.append("(");
-        sql.append("Jaqueline Mendes,");
-        sql.append("cast123");
+        sql.append("'Jaqueline Mendes',");
+        sql.append("'cast123'");
         sql.append(")");
 
 

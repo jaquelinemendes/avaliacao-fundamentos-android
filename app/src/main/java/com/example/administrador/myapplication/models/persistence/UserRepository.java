@@ -30,9 +30,10 @@ public class UserRepository {
         String where = UserContract.USER + " = ? AND " + UserContract.PASSWORD + " = ?";
         String[] args = {user, pass};
         Cursor cursor = db.query(UserContract.TABLE, UserContract.COLUNS, where, args, null, null, UserContract.USER);
-        userValid = cursor.moveToFirst();
+        userValid = cursor.moveToNext();
         db.close();
         helper.close();
+        cursor.close();
         return userValid;
     }
 }

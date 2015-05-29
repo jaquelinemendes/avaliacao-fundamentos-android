@@ -13,6 +13,8 @@
     <string name="msg_edit_success">Service order edited successfully.</string>
     <string name="msg_delete">Delete the selected service order?</string>
     <string name="msg_delete_success">Service order deleted successfully.</string>
+    <string name="msg_error_login"> User and Password Incorrect!</string>
+
 
     <string name="lbl_user">User</string>
     <string name="lbl_pass">Password</string>
@@ -37,5 +39,8 @@
     <string name="lbl_confirm">Confirm</string>
     <string name="lbl_share">Share</string>
     <string name="lbl_share_option">Choose one option</string>
+    <string name="lbl_active">Delete</string>
+    <string name="lbl_active_menu">Active</string>
+    <string name="lbl_inative_menu">Inactive</string>
 
 </resources>

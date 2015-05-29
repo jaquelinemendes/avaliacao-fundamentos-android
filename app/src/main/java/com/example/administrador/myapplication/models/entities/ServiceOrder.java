@@ -18,6 +18,7 @@ public class ServiceOrder implements Parcelable {
     private double mValue;
     private boolean mPaid;
     private String mDescription;
+    private boolean mActive;
 
     public ServiceOrder() {
         super();
@@ -145,7 +146,8 @@ public class ServiceOrder implements Parcelable {
     }
 
     public void delete() {
-        ServiceOrdersRepository.getInstance().delete(this);
+        ServiceOrdersRepository.getInstance().inactivate(this);
+        //ServiceOrdersRepository.getInstance().delete(this);
     }
 
     @Override
@@ -186,4 +188,12 @@ public class ServiceOrder implements Parcelable {
             return new ServiceOrder[size];
         }
     };
+
+    public void setActive(boolean active) {
+        this.mActive = active;
+    }
+
+    public boolean isActive() {
+        return mActive;
+    }
 }
